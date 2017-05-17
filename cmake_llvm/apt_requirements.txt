@@ -4,5 +4,4 @@ clang-3.8
 clang-format-3.8
 clang-tidy-3.8
 pkg-config
-libboost-all-dev
-libboost1.58-all-dev
+libboost-*-dev
