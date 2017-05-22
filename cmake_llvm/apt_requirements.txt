@@ -1,7 +1,7 @@
-make
-pkg-config
 clang-3.8
 clang-format-3.8
 clang-tidy-3.8
-pkg-config
+dos2unix
 libboost-all-dev
+make
+pkg-config
