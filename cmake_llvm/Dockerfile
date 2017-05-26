@@ -17,7 +17,7 @@ ADD https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh cmake-3.7.2-Linux-x
 RUN chmod +x ./cmake-3.7.2-Linux-x86_64.sh
 RUN ./cmake-3.7.2-Linux-x86_64.sh --skip-license
 
-ENV LLVM_VERSION=4.0
+ENV LLVM_VERSION=3.8
 RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$LLVM_VERSION 100
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$LLVM_VERSION 100
 RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-$LLVM_VERSION 100
