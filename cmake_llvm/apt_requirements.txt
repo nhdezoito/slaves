@@ -1,9 +1,9 @@
-clang-4.0
-clang-format-4.0
-clang-tidy-4.0
+clang-3.8
+clang-format-3.8
+clang-tidy-3.8
 dos2unix
 libboost-all-dev
-lldb-4.0
-lld-4.0
+lldb-3.8
+lld-3.8
 make
 pkg-config
