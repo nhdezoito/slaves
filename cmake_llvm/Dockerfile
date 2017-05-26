@@ -4,8 +4,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=$PATH:/bin/:/usr/bin/
 
 # Apt packages
-ADD apt_requirements.txt apt_requirements.txt
+RUN echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt/sources.list
+ADD llvm-snapshot.gpg.key llvm-snapshot.gpg.key
+RUN apt-key add ./llvm-snapshot.gpg.key
+RUN echo 'sss'
 RUN apt-get update
+ADD apt_requirements.txt apt_requirements.txt
 RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ")
 
 # CMake
@@ -13,8 +17,16 @@ ADD https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh cmake-3.7.2-Linux-x
 RUN chmod +x ./cmake-3.7.2-Linux-x86_64.sh
 RUN ./cmake-3.7.2-Linux-x86_64.sh --skip-license
 
-ENV CC=clang-3.8
-ENV CXX=clang++-3.8
+ENV LLVM_VERSION=4.0
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$LLVM_VERSION 100
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$LLVM_VERSION 100
+RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-$LLVM_VERSION 100
+RUN update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-$LLVM_VERSION 100
+RUN update-alternatives --install /usr/bin/lldb lldb /usr/bin/clang-tidy-$LLVM_VERSION 100
+RUN update-alternatives --install /usr/bin/lld lld /usr/bin/clang-tidy-$LLVM_VERSION 100
+
+ENV CC=clang-LLVM_VERSION
+ENV CXX=clang++-LLVM_VERSION
 
 # Cleanup
 RUN rm ./cmake-3.7.2-Linux-x86_64.sh && \
