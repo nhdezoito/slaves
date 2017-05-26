@@ -3,7 +3,5 @@ clang-format-3.8
 clang-tidy-3.8
 dos2unix
 libboost-all-dev
-lldb-3.8
-lld-3.8
 make
 pkg-config

@@ -14,3 +14,6 @@ RUN apt-get update && \
 # Cleanup
     rm ./cmake-3.7.2-Linux-x86_64.sh && \
     apt-get -y autoremove && apt-get -y autoclean && apt-get -y purge wget
+
+ENV CC=gcc-4.8
+ENV CXX=g++-4.8

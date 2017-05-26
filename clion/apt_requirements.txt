@@ -1,3 +1,5 @@
+bash-completion
 default-jdk
 git
 meld
+nano

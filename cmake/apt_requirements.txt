@@ -1,5 +1,6 @@
 wget
-gcc-5
-g++-5
+gcc-4.8
+g++-4.8
 make
+libboost-all-dev
 pkg-config
