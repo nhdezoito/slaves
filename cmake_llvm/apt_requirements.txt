@@ -5,5 +5,6 @@ dos2unix
 libboost-all-dev
 lldb-4.0
 lld-4.0
+locales
 make
 pkg-config

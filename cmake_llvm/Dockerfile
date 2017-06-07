@@ -1,12 +1,7 @@
 FROM ubuntu:xenial
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PATH=$PATH:/bin/:/usr/bin/
-
-RUN locale-gen en_US.UTF-8  
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8  
+ENV PATH=$PATH:/bin/:/usr/bin/:/usr/sbin/
 
 # Apt packages
 RUN echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt/sources.list
@@ -15,6 +10,12 @@ RUN apt-key add ./llvm-snapshot.gpg.key
 RUN apt-get update
 ADD apt_requirements.txt apt_requirements.txt
 RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ")
+
+# Locale
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # CMake
 ADD https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh cmake.sh
@@ -38,5 +39,5 @@ ENV CC=clang
 ENV CXX=clang++
 
 # Cleanup
-RUN rm ./cmake-3.7.2-Linux-x86_64.sh && \
+RUN rm ./cmake.sh && \
     apt-get -y autoremove && apt-get -y autoclean
