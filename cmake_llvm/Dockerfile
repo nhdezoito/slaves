@@ -17,9 +17,9 @@ ADD apt_requirements.txt apt_requirements.txt
 RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ")
 
 # CMake
-ADD https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh cmake-3.7.2-Linux-x86_64.sh
-RUN chmod +x ./cmake-3.7.2-Linux-x86_64.sh
-RUN ./cmake-3.7.2-Linux-x86_64.sh --skip-license
+ADD https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh cmake.sh
+RUN chmod +x ./cmake.sh
+RUN ./cmake.sh --skip-license
 
 # Clang
 ENV LLVM_VERSION=4.0
@@ -32,6 +32,7 @@ RUN update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-$LLVM_VERSION
 RUN update-alternatives --install /usr/bin/lld lld /usr/bin/lld-$LLVM_VERSION 100
 RUN update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-$LLVM_VERSION 100
 RUN update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-$LLVM_VERSION 100
+RUN update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-$LLVM_VERSION 100
 
 ENV CC=clang
 ENV CXX=clang++
