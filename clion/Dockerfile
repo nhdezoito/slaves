@@ -12,4 +12,4 @@ RUN mv clion-2017.1.3 clion
 
 # System settings
 RUN echo "fs.inotify.max_user_watches = 524288" >>  /etc/sysctl.conf
-RUN sudo sysctl -p --system
+RUN sysctl -p --system
