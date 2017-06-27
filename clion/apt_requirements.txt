@@ -3,3 +3,4 @@ default-jdk
 git
 meld
 nano
+doxygen
