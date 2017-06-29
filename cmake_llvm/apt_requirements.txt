@@ -8,3 +8,4 @@ lld-4.0
 locales
 make
 pkg-config
+lcov
