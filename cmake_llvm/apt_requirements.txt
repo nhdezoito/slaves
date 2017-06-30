@@ -9,3 +9,5 @@ locales
 make
 pkg-config
 lcov
+libgstreamer1.0-dev
+libgstreamer-plugins-base1.0-dev
