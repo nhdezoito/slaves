@@ -6,3 +6,4 @@ libboost-all-dev
 pkg-config
 libgstreamer1.0-dev
 libgstreamer-plugins-base1.0-dev
+libgstreamer-plugins-good1.0-dev
