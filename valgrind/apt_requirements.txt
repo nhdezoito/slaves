@@ -1,2 +1,0 @@
-valgrind
-libboost-all-dev
