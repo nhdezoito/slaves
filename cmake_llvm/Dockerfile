@@ -1,43 +1,44 @@
 FROM ubuntu:xenial
 
+# System Enviroment
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=$PATH:/bin/:/usr/bin/:/usr/sbin/
 
-# Apt packages
-RUN echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt/sources.list
-ADD llvm-snapshot.gpg.key llvm-snapshot.gpg.key
-RUN apt-key add ./llvm-snapshot.gpg.key
-RUN apt-get update
-ADD apt_requirements.txt apt_requirements.txt
-RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ")
-
-# Locale
-RUN locale-gen en_US.UTF-8
+# Locale Enviroment
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-# CMake
-ADD https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh cmake.sh
-RUN chmod +x ./cmake.sh
-RUN ./cmake.sh --skip-license
-
-# Clang
+# Clang Enviroment
 ENV LLVM_VERSION=4.0
-
-RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/lld lld /usr/bin/lld-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-$LLVM_VERSION 100
-RUN update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-$LLVM_VERSION 100
-
 ENV CC=clang
 ENV CXX=clang++
 
+# External required files
+ADD llvm-snapshot.gpg.key llvm-snapshot.gpg.key
+ADD apt_requirements.txt apt_requirements.txt
+
+# Apt packages
+RUN echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt/sources.list && \
+    apt-key add ./llvm-snapshot.gpg.key && \
+    apt-get update && \
+    apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ") && \
+# Update Locale
+    locale-gen en_US.UTF-8 && \
+# Install CMake
+    wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.sh -O cmake.sh && \
+    chmod +x ./cmake.sh && \
+    ./cmake.sh --skip-license && \
+# Configure Clang
+    update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/lld lld /usr/bin/lld-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-$LLVM_VERSION 100 && \
+    update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-$LLVM_VERSION 100 && \
 # Cleanup
-RUN rm ./cmake.sh && \
+    rm -fv ./cmake.sh && \
     apt-get -y autoremove && apt-get -y autoclean
