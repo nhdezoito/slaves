@@ -1,10 +1,11 @@
-gcc-4.8
 g++-4.8
+gcc-4.8
+gstreamer1.0-plugins-base
+gstreamer1.0-plugins-good
+gstreamer1.0-plugins-bad
+gstreamer1.0-plugins-ugly
 libboost-all-dev
 libgstreamer1.0-dev
-libgstreamer-plugins-base1.0-dev
-libgstreamer-plugins-good1.0-dev
-libgstreamer-plugins-bad1.0-dev
 make
 pkg-config
 wget

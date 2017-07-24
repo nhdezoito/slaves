@@ -2,12 +2,13 @@ clang-4.0
 clang-format-4.0
 clang-tidy-4.0
 dos2unix
+gstreamer1.0-plugins-base
+gstreamer1.0-plugins-good
+gstreamer1.0-plugins-bad
+gstreamer1.0-plugins-ugly
 lcov
 libboost-all-dev
 libgstreamer1.0-dev
-libgstreamer-plugins-base1.0-dev
-libgstreamer-plugins-good1.0-dev
-libgstreamer-plugins-bad1.0-dev
 lldb-4.0
 lld-4.0
 locales
