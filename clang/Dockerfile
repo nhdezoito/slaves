@@ -20,7 +20,8 @@ ADD llvm-snapshot.gpg.key llvm-snapshot.gpg.key
 RUN apt-key add ./llvm-snapshot.gpg.key
 RUN apt-get update
 ADD apt_requirements.txt apt_requirements.txt
-RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ")
+RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ") && \
+    apt-get autoremove && apt-get autoclean
 # Update Locale
 RUN locale-gen en_US.UTF-8 
 
