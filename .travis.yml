@@ -5,7 +5,7 @@ services:
   - docker
   
 script:
-  - docker pull slaves/clang:latest
+  - docker pull nhdezoito/clang:latest
   - docker build --rm -f clang/Dockerfile -t slaves/clang:latest clang
-#  - docker login
-#  - docker push slaves/clang:latest
+  - docker login --username $DOCKER_USER --password $DOCKER_PASSWD
+  - docker push slaves/clang:latest
