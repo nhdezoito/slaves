@@ -5,6 +5,7 @@ services:
   - docker
   
 script:
+  - docker pull slaves/clang:latest
   - docker build --rm -f clang/Dockerfile -t slaves/clang:latest clang
 #  - docker login
 #  - docker push slaves/clang:latest
