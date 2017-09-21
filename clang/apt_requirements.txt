@@ -1,0 +1,12 @@
+clang-4.0
+clang-format-4.0
+clang-tidy-4.0
+doxygen
+graphviz
+lcov
+lldb-4.0
+lld-4.0
+locales
+make
+pkg-config
+wget
