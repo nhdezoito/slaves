@@ -3,5 +3,5 @@ sudo: required
 services:
   - docker
   
-  script:
+script:
   - docker build --rm -f clang/Dockerfile -t clang:latest clang
