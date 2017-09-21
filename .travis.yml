@@ -1,0 +1,7 @@
+sudo: required
+
+services:
+  - docker
+  
+  script:
+  - docker build --rm -f clang/Dockerfile -t clang:latest clang
