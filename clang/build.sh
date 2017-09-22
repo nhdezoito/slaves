@@ -1,6 +1,8 @@
 #!/bin/bash
 
-docker pull nhdezoito/clang:latest
-docker build --rm -f clang/Dockerfile -t nhdezoito/clang:latest clang
+TAG=nhdezoito/clang:latest
+
+#docker pull ${TAG}
+#docker build --rm -f clang/Dockerfile -t ${TAG} clang
 docker login --username $DOCKER_USER --password $DOCKER_PASSWD
-docker push nhdezoito/clang:latest
+#docker push ${TAG}
