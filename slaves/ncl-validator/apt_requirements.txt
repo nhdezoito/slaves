@@ -1,2 +1,1 @@
-git
 qt5-default

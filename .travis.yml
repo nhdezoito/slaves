@@ -6,3 +6,5 @@ services:
   
 script:
   - ./clang/build.sh
+  - ./slaves/ncl-validator/build.sh
+  - ./apps/ncl-validator/build.sh
