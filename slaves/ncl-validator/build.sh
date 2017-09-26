@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 TAG=nhdezoito/ncl-validator-slave:latest
