@@ -5,6 +5,6 @@ services:
   - docker
   
 script:
-  - ./clang/build.sh
+  - ./slaves/clang/build.sh
   - ./slaves/ncl-validator/build.sh
   - ./apps/ncl-validator/build.sh
