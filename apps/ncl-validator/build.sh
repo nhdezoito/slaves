@@ -14,11 +14,11 @@ git clone --depth=1 https://github.com/TeleMidia/nclcomposer.git "${dir}/nclcomp
 
 cmd_generate="cd ${dir}/build && pwd && ls -lah ${dir}/nclcomposer && cmake -DWITH_VALIDATOR_EXE=ON ${dir}/nclcomposer"
 docker run -i --rm -v ${dir}:${dir} ${build_image} bash -c "${cmd_generate}"
-# cmd_build="cd ${dir}/build && nproc && cmake --build . --target all -- -j$(nproc)"
-# docker run -i --rm -v ${dir}:${dir} ${build_image} bash -c "${cmd_build}"
+cmd_build="cd ${dir}/build && nproc && cmake --build . --target all -- -j$(nproc)"
+docker run -i --rm -v ${dir}:${dir} ${build_image} bash -c "${cmd_build}"
 
-# # Create app docker image
-# docker build --rm -f "${dir}/Dockerfile" -t "${app_image}" "${dir}"
-# docker run -i --rm ${app_image}
-# docker login --username "${DOCKER_USER}" --password "${DOCKER_PASSWD}"
-# docker push ${app_image}
+# Create app docker image
+docker build --rm -f "${dir}/Dockerfile" -t "${app_image}" "${dir}"
+docker run -i --rm ${app_image}
+docker login --username "${DOCKER_USER}" --password "${DOCKER_PASSWD}"
+docker push ${app_image}
