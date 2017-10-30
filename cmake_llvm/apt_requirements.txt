@@ -9,6 +9,7 @@ gstreamer1.0-plugins-ugly
 lcov
 libboost-all-dev
 libgstreamer1.0-dev
+libssl-dev
 lldb-4.0
 lld-4.0
 locales
