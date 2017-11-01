@@ -6,6 +6,7 @@ gstreamer1.0-plugins-bad
 gstreamer1.0-plugins-ugly
 libboost-all-dev
 libgstreamer1.0-dev
+libssl-dev
 make
 pkg-config
 wget
