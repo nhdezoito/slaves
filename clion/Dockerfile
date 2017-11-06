@@ -6,7 +6,7 @@ RUN apt-get update
 RUN apt-get install -y $(grep -vE "^\s*#" apt_requirements.txt  | tr "\n" " ")
 
 # Install clion
-ADD https://download.jetbrains.com/cpp/CLion-2017.1.3.tar.gz .
+ADD https://download.jetbrains.com/cpp/CLion-2017.2.3.tar.gz .
 RUN tar zxvf CLion-2017.1.3.tar.gz
 RUN mv clion-2017.1.3 clion
 
